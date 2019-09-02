@@ -150,7 +150,7 @@ questionLabel.grid(row=1, column=2, sticky=W)
 spacingLabel.grid(row=1, column=3)
 answerEntry.grid(row=1, column=4, sticky=E)
 answerButton.grid(row=1, column=5, sticky=W)
-timeMultiplierLabel.grid(row=2, column=1, columnspan=5)
+#timeMultiplierLabel.grid(row=2, column=1, columnspan=5)
 
 currentScore.set('Score: %s' %(score))
 highScore.set('High score: %d' %(test[4]))
