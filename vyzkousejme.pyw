@@ -16,7 +16,7 @@ def swapSides():
 
 def saveTest():
     print(test)
-    with open(filepath, mode='w') as file:
+    with open(filepath, mode='w', encoding = "UTF-8") as file:
         file.write(test[0]+'/'+test[1])
         file.write(str(test[4])+'\n')
         for i in range(len(test[2])):
@@ -62,7 +62,7 @@ def submitAnswer(uselessArgument):
 
 def formatTest(filepath):
     global score
-    with open(filepath) as file:
+    with open(filepath, encoding = "UTF-8") as file:
         file = file.readlines()
 
     nazev1 = file[0].split('/')[0]
@@ -120,6 +120,7 @@ def makeRoot():
     root.geometry('500x400')
     root.title('Test Me')
     root.configure(bg="gray")
+    root.iconbitmap('programfiles/icon.ico')
     return root
 
 
