@@ -1,5 +1,5 @@
 CESTINA/ANGLICTINA
-0
+13
 apple/jablko
 car,automobile/auto,automobil
 chopper,helicopter/vrtulnik,helikoptera
