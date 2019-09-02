@@ -7,9 +7,9 @@ import random
 def swapSides():
     global test
 
-    temp = test[2]
-    test[2] = test[3]
-    test[3] = temp
+    temp = test[0]
+    test[0] = test[1]
+    test[1] = temp
 
     newQuestion()
 
@@ -17,25 +17,24 @@ def swapSides():
 def saveTest():
     print(test)
     with open(filepath, mode='w', encoding = "UTF-8") as file:
-        file.write(test[0]+'/'+test[1])
-        file.write(str(test[4])+'\n')
-        for i in range(len(test[2])):
-            for j in range(len(test[2][i])):
-                file.write(test[2][i][j])
-                if j < len(test[2][i])-1:
+        file.write(str(test[2])+'\n')
+        for i in range(len(test[0])):
+            for j in range(len(test[0][i])):
+                file.write(test[0][i][j])
+                if j < len(test[0][i])-1:
                     file.write(',')
             file.write('/')
-            for j in range(len(test[3][i])):
-                file.write(test[3][i][j])
-                if j < len(test[3][i])-1:
+            for j in range(len(test[1][i])):
+                file.write(test[1][i][j])
+                if j < len(test[1][i])-1:
                     file.write(',')
             file.write('\n')
 
 
 def newQuestion():
     global questionPlace
-    questionPlace = random.randint(0, len(test[2])-1)
-    newQuestion = test[2][questionPlace][0]
+    questionPlace = random.randint(0, len(test[0])-1)
+    newQuestion = test[0][questionPlace][0]
     question.set(newQuestion)
 
 
@@ -47,15 +46,15 @@ def on_closing():
 
 def submitAnswer(uselessArgument):
     global score
-    if answerEntry.get().lower() in test[3] [questionPlace]:
+    if answerEntry.get().lower() in test[1] [questionPlace]:
         score += 1
         currentScore.set('Score: %s' % (score))
     else:
         score = 0
         currentScore.set('Score: %s' % (score))
-    if score > test[4]:
-        test[4] = score
-        highScore.set('High score: %d' % (test[4]))
+    if score > test[2]:
+        test[2] = score
+        highScore.set('High score: %d' % (test[2]))
     answerEntry.delete(0, 'end')
     newQuestion()
 
@@ -65,22 +64,19 @@ def formatTest(filepath):
     with open(filepath, encoding = "UTF-8") as file:
         file = file.readlines()
 
-    nazev1 = file[0].split('/')[0]
-    nazev2 = file[0].split('/')[1]
-
     sloupec1 = []
     sloupec2 = []
 
-    highScore = int(file[1].strip('\n'))
+    highScore = int(file[0].strip('\n'))
     score = 0
 
-    for line in file[2:]:
+    for line in file[1:]:
         currentline = line.strip('\n')
         currentline = currentline.split('/')
         sloupec1.append(currentline[0].split(','))
         sloupec2.append(currentline[1].split(','))
 
-    return nazev1, nazev2, sloupec1, sloupec2, highScore
+    return sloupec1, sloupec2, highScore
 
 
 def getExtension(filename):  # returns the last four characters in a filename as a string
@@ -102,7 +98,7 @@ def openTest():
     test = list(formatTest(filepath))
     newQuestion()
     currentScore.set('Score: %s' % score)
-    highScore.set('High score: %d' % test[4])
+    highScore.set('High score: %d' % test[2])
 
 
 def makeMenu(root):
@@ -141,7 +137,7 @@ highScoreLabel = Label(root, textvariable=highScore, bg='gray')
 questionLabel = Label(root, textvariable=question, width=30)
 spacingLabel = Label(bg='gray', padx=10)
 answerEntry = Entry(root, width=30)
-answerButton = Button(root, text='submit', command=submitAnswer)
+answerButton = Button(root, text='submit', command=lambda: submitAnswer(0))
 timeMultiplierLabel = Label(root, textvariable=timeMultiplier, bg='gray')
 
 anotherSpacingLabel.grid(row=0, column=0)
@@ -154,7 +150,7 @@ answerButton.grid(row=1, column=5, sticky=W)
 #timeMultiplierLabel.grid(row=2, column=1, columnspan=5)
 
 currentScore.set('Score: %s' %(score))
-highScore.set('High score: %d' %(test[4]))
+highScore.set('High score: %d' %(test[2]))
 question.set('question will appear here')
 timeMultiplier.set('Time multiplier is: 0')
 
