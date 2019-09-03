@@ -159,7 +159,7 @@ answerButton.grid(row=1, column=5, sticky=W)
 timeMultiplierLabel.grid(row=2, column=1, columnspan=5)
 
 currentScore.set('Score: %s' %(score))
-highScore.set('High score is: %s' %(test[2]))
+highScore.set('High score: %s' %(test[2]))
 question.set('question will appear here')
 
 root.protocol("WM_DELETE_WINDOW", on_closing)
