@@ -6,11 +6,14 @@ import random
 
 def swapSides():
     global test
+    global score
 
     temp = test[0]
     test[0] = test[1]
     test[1] = temp
 
+    score = 0
+    currentScore.set('Score: %s' % score)
     newQuestion()
 
 
@@ -57,6 +60,8 @@ def submitAnswer(uselessArgument):
         highScore.set('High score: %d' % (test[2]))
     answerEntry.delete(0, 'end')
     newQuestion()
+    currentScore.set('Score: %s' % score)
+    highScore.set('High score: %d' % test[2])
 
 
 def formatTest(filepath):
@@ -97,8 +102,6 @@ def openTest():
             messagebox.showinfo("ERROR: unrecognized file", "We are sorry but files with the '%s' appendix are not supported, we support only '.tst' files." % (getExtension(filepath)))
     test = list(formatTest(filepath))
     newQuestion()
-    currentScore.set('Score: %s' % score)
-    highScore.set('High score: %d' % test[2])
 
 
 def makeMenu(root):

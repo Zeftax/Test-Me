@@ -11,3 +11,5 @@ tooth brush/kartáček na zuby,kartáček,zubní kartáček
 badge/odznak
 razor/žiletka,břitva
 book/kniha,knížka
+vitamins/vitamíny
+instrument/nástroj
