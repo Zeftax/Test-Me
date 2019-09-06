@@ -1,4 +1,4 @@
-0.0
+20.334367996780866
 apple/jablko
 car,automobile/auto,automobil
 chopper,helicopter/vrtulník,helikoptéra
