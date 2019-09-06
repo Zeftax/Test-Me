@@ -1,4 +1,4 @@
-20.334367996780866
+0
 apple/jablko
 car,automobile/auto,automobil
 chopper,helicopter/vrtulník,helikoptéra
