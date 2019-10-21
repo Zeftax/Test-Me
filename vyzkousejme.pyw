@@ -53,15 +53,16 @@ def on_closing(): #zobrazi se pri zavirani programu, pokud se uzivatel rozhodne 
 
 def submitAnswer(uselessArgument): # precte pole pro zadani odpovedi, zhodnoti ji, a vhodnym zpusobem zmeni score a highscore 
     global score
-    if answerEntry.get().lower() in test[1] [questionPlace]:
-        score += timeMultiplier
-        currentScore.set('Score: %s' % (score))
-    else:
-        score = 0
-        currentScore.set('Score: %s' % (score))
-    if score > test[2]:
-        test[2] = score
-        highScore.set('High score: %s' % (test[2]))
+    for i in test[1][questionPlace]:
+        if answerEntry.get().lower() == i.lower():
+            score += timeMultiplier
+            currentScore.set('Score: %s' % (score))
+        else:
+            score = 0
+            currentScore.set('Score: %s' % (score))
+        if score > test[2]:
+            test[2] = score
+            highScore.set('High score: %s' % (test[2]))
     answerEntry.delete(0, 'end')
     newQuestion()
     currentScore.set('Score: %s' % round(score, 2))
